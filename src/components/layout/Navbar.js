@@ -29,6 +29,16 @@ class Navbar extends Component {
                   Add Product
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/productList">
+                  Products
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/userReg">
+                  Register
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
