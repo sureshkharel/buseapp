@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+//assign object to return on loading the data
 const Product = props =>(
     <div className="card" style={{width: '25rem', margin:'10px'}}>
     <div className="card-body">
@@ -18,8 +18,9 @@ class ProductList extends Component {
         super(props);
         this.state = {products:[]};
     }
+    //when page load send get request to backend to list products
     componentDidMount(){
-        axios.get('http://localhost:4000/products/')
+        axios.get('http://localhost:4000/api/products/')
         .then(response =>{
             this.setState({products: response.data});
         })
@@ -27,7 +28,17 @@ class ProductList extends Component {
             console.log(error);
         })
     }
-
+//when user edits product, update the page
+    componentDidUpdate(){
+        axios.get('http://localhost:4000/api/products/')
+        .then(response =>{
+            this.setState({products: response.data});
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }
+//listout each product
     productsList(){
         return this.state.products.map(function(currentProduct, i){
             return <Product product={currentProduct} key={i}/>;
@@ -37,13 +48,6 @@ class ProductList extends Component {
         return (
             <div>
             {this.productsList()}
-                {/* <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-                </div> */}
             </div>
         )
     }

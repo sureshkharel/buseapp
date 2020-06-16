@@ -6,7 +6,7 @@ import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
 import ProductAdd from './components/pages/ProductAdd';
 import Login from './components/auth/Login';
-
+import UserRegister from './components/pages/UserRegister';
 import './App.css';
 import ProductList from './components/pages/ProductList';
 import ProductEdit from './components/pages/ProductEdit';
@@ -31,6 +31,7 @@ class App extends Component {
               <SecureRoute path="/productAdd" exact={true} component={ProductAdd} />
               <Route path="/productList" exact={true} component={ProductList} />
               <SecureRoute path="/edit/:id" exact={true} component={ProductEdit} />
+              <Route path="/userReg" exact={true} component={UserRegister} />
               <Route
                 path="/login"
                 render={() => (
@@ -41,6 +42,7 @@ class App extends Component {
             </div>
           </div>
         </Security>
+        
       </Router>
     );
   }

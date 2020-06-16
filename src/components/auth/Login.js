@@ -12,7 +12,7 @@ export default withAuth(
       };
       this.checkAuthentication();
     }
-
+//set authentication state
     async checkAuthentication() {
       const authenticated = await this.props.auth.isAuthenticated();
       if (authenticated !== this.state.authenticated) {
@@ -39,8 +39,7 @@ export default withAuth(
         position: "absolute",
         top: "30%",
         left: "30%",
-        width: "50%",
-        // height: "100px"
+        width: "50%"
       };
       if (this.state.authenticated === null) return null;
       return this.state.authenticated ? 
@@ -49,7 +48,7 @@ export default withAuth(
         <SignInWidget
           baseUrl={this.props.baseUrl}
           onSuccess={this.onSuccess}
-          onError={this.onError}
+          onError={this.onError} 
         />      
         </div>
     }

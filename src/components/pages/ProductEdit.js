@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 export default class ProductEdit extends Component {
-
+  //define the variable  
+  state = {
+        currentUserName: '',
+        currentUserEmail: '',
+        productName:'',
+        productPrice:'',
+        productDescription:'',
+        productImage:''
+      };
     constructor(props){
         super(props);
 
@@ -9,14 +17,36 @@ export default class ProductEdit extends Component {
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangePrice = this.onChangePrice.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
+//initialize the variable
         this.state = {
             productName:'',
             productPrice:'',
             productDescription:''
         }
     }
-
+    //to catch the detail of the logged in user
+    componentDidMount() {
+      const idToken = JSON.parse(localStorage.getItem('okta-token-storage'));
+      this.setState({
+        currentUserEmail: idToken.idToken.claims.email,
+        currentUserName: idToken.idToken.claims.name
+      });
+    }
+    //add the detail of the particular product to display in edit form
+    componentDidMount(){
+      axios.get('http://localhost:4000/api/products/'+this.props.match.params.id)
+      .then(response => {
+          this.setState({
+              productName: response.data.productName,
+              productPrice: response.data.productPrice,
+              productDescription: response.data.productDescription
+          })
+      })
+      .catch(function(error){
+          console.log(error)
+      })
+    }
+//collect the data of the input field
     onChangeName(e){
         this.setState({
           productName:e.target.value
@@ -34,46 +64,21 @@ export default class ProductEdit extends Component {
       }
       handleSubmit(e){
         e.preventDefault();
-        console.log('Form submitted');
-    
+        console.log('Updated successfully');
+    //created object to send to post request
         const edtProduct ={
           productName: this.state.productName,
           productDescription: this.state.productDescription,
           productPrice: this.state.productPrice
         };
-        axios.post('http://localhost:4000/products/update/'+this.props.match.params.id, edtProduct)
+        axios.post('http://localhost:4000/api/products/update/'+this.props.match.params.id, edtProduct)
         .then(res => console.log(res.data));
 
-        this.props.history.push('/');
+        this.props.history.push('/productList');
       }
-
-    componentDidMount(){
-            axios.get('http://localhost:4000/products/'+this.props.match.params.id)
-            .then(response => {
-                this.setState({
-                    productName: response.data.productDescription,
-                    productPrice: response.data.productPrice,
-                    productDescription: response.data.productDescription
-                })
-            })
-            .catch(function(error){
-                console.log(error)
-            })
-    }
-    componentDidUpdate(){
-        axios.get('http://localhost:4000/products/'+this.props.match.params.id)
-            .then(response => {
-                this.setState({
-                    productName: response.data.productDescription,
-                    productPrice: response.data.productPrice,
-                    productDescription: response.data.productDescription
-                })
-            })
-            .catch(function(error){
-                console.log(error)
-            })
-    }
+      
     render() {
+        const { currentUserEmail, currentUserName } = this.state;
         return (           
                 <div className="card">        
                 <div className="card-body">
@@ -96,7 +101,7 @@ export default class ProductEdit extends Component {
                         <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="SAVE" className="btn btn-primary"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="submit" value="UPDATE" className="btn btn-primary"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         
                     </div>
                     </form>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 class ProductAdd extends Component {
+  //define variable
   state = {
     currentUserName: '',
     currentUserEmail: '',
@@ -17,13 +18,14 @@ class ProductAdd extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangePrice = this.onChangePrice.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
+//initialize the variable
     this.state = {
       productName: '',
       productDescription: '',
       productPrice:''
     }
   }
+  //collect detail of the each field
   onChangeName(e){
     this.setState({
       productName:e.target.value
@@ -45,16 +47,17 @@ class ProductAdd extends Component {
   
   handleSubmit(e){
     e.preventDefault();
-    console.log('Form submitted');
-
+    alert('Product added');
+// make object of new product detail to send in post request
     const newProduct ={
       productName: this.state.productName,
       productDescription: this.state.productDescription,
       productPrice: this.state.productPrice
     }
-    axios.post('http://localhost:4000/products/add', newProduct)
+    //send post request to add new product
+    axios.post('http://localhost:4000/api/products/add', newProduct)
     .then(res => console.log(res.data));
-
+//clear the form data
     this.setState({
       productName:'',
       productDescription:'',
@@ -76,9 +79,10 @@ class ProductAdd extends Component {
       <div className="card">
         {/* <h1>Welcome {currentUserName}</h1>
         <p>Email: {currentUserEmail}</p>
-        <p>You have reached the authorized add product area of the portal</p> */}
+        <p>You have reached the authorized add product area of the buse</p> */}
       <div className="card-body">
       <h5 className="card-title">Add Product</h5>
+      {/* form to accept parameter of product */}
         <form id="productForm" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Product Name</label>
