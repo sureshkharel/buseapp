@@ -59,6 +59,9 @@ export default withAuth(
                         <p className="lead">
                           Just came to view product, go through this link ;)
                         </p>
+                        <button className="btn btn-dark btn-md">
+                        hi alessio
+                          </button>
                       <Link className="btn btn-dark btn-md" to="/productList">
                         Products
                       </Link>
