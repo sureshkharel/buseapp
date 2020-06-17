@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import { LAU, CAU } from '../vari';
 class Navbar extends Component {
     render() {
         return (

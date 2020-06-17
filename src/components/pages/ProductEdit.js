@@ -1,5 +1,7 @@
+import { LAU, CAU } from '../vari';
 import React, { Component } from 'react'
 import axios from 'axios';
+
 export default class ProductEdit extends Component {
   //define the variable  
   state = {
@@ -34,7 +36,7 @@ export default class ProductEdit extends Component {
     }
     //add the detail of the particular product to display in edit form
     componentDidMount(){
-      axios.get('http://localhost:4000/api/products/'+this.props.match.params.id)
+      axios.get(LAU+'api/products/'+this.props.match.params.id)
       .then(response => {
           this.setState({
               productName: response.data.productName,
@@ -71,8 +73,8 @@ export default class ProductEdit extends Component {
           productDescription: this.state.productDescription,
           productPrice: this.state.productPrice
         };
-        axios.post('http://localhost:4000/api/products/update/'+this.props.match.params.id, edtProduct)
-        .then(res => console.log(res.data));
+        axios.post(LAU+'api/products/update/'+this.props.match.params.id, edtProduct)
+        .then(res => alert(res.data));
 
         this.props.history.push('/productList');
       }

@@ -1,3 +1,4 @@
+import { LAU, CAU } from '../vari';
 import React, { Component } from 'react';
 import axios from 'axios';
 class ProductAdd extends Component {
@@ -47,7 +48,6 @@ class ProductAdd extends Component {
   
   handleSubmit(e){
     e.preventDefault();
-    alert('Product added');
 // make object of new product detail to send in post request
     const newProduct ={
       productName: this.state.productName,
@@ -55,8 +55,8 @@ class ProductAdd extends Component {
       productPrice: this.state.productPrice
     }
     //send post request to add new product
-    axios.post('http://localhost:4000/api/products/add', newProduct)
-    .then(res => console.log(res.data));
+    axios.post(LAU+'api/products/add', newProduct)
+    .then(res => alert(res.data));
 //clear the form data
     this.setState({
       productName:'',

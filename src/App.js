@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Security, SecureRoute, ImplicitCallback } from '@okta/okta-react';
-
+// import { LAU, CAU } from './components/vari';
 import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
 import ProductAdd from './components/pages/ProductAdd';

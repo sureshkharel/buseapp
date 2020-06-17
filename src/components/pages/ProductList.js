@@ -1,3 +1,4 @@
+import { LAU, CAU } from '../vari';
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -20,7 +21,7 @@ class ProductList extends Component {
     }
     //when page load send get request to backend to list products
     componentDidMount(){
-        axios.get('http://localhost:4000/api/products/')
+        axios.get(LAU+'api/products/')
         .then(response =>{
             this.setState({products: response.data});
         })
@@ -30,7 +31,7 @@ class ProductList extends Component {
     }
 //when user edits product, update the page
     componentDidUpdate(){
-        axios.get('http://localhost:4000/api/products/')
+        axios.get(LAU+'api/products/')
         .then(response =>{
             this.setState({products: response.data});
         })
