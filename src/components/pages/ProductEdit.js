@@ -98,10 +98,11 @@ export default class ProductEdit extends Component {
                         <label>Product Description</label>
                         <input type="textarea" className="form-control" value={this.state.productDescription} id="productDescription" onChange={this.onChangeDescription}/>            
                     </div>
+                    {/* applying image 
                     <div className="form-group">
                         <label>Example file input</label>
                         <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
-                    </div>
+                    </div> */}
                     <div className="form-group">
                         <input type="submit" value="UPDATE" className="btn btn-primary"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         

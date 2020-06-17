@@ -96,10 +96,11 @@ class ProductAdd extends Component {
             <label>Product Description</label>
             <input type="textarea" className="form-control" value={this.state.productDescription} id="productDescription" placeholder="Enter product detail" onChange={this.onChangeDescription}/>            
           </div>
+          {/* adding image 
           <div className="form-group">
             <label>Example file input</label>
             <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
-          </div>
+          </div> */}
           <div className="form-group">
             <input type="submit" value="SAVE" className="btn btn-primary"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <input type="button" value="RESET" className="btn btn-danger" onClick={this.onResetting}/>
