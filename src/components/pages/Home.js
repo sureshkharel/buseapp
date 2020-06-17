@@ -58,7 +58,6 @@ export default withAuth(
                     <div className="card-text">
                         <p className="lead">
                           Just came to view product, go through this link ;)
-                          HI alessio
                         </p>
                       <Link className="btn btn-dark btn-md" to="/productList">
                         Products
