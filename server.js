@@ -8,5 +8,5 @@ var port = process.env.PORT || 3000;
 app.listen(port);
 console.log('server started '+ port);
 app.get("/implicit/callback",(req,res)=>{
-    res.redirect('https://sellnbuy.herokuapp.com/');
+    res.redirect('/index.html');
 });
